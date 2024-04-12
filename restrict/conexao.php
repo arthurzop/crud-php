@@ -1,6 +1,5 @@
 <?php 
 
-    include "../validar.php";
 
     $server = 'localhost';
     $user = 'root';

@@ -32,15 +32,33 @@
 
                     if (isset($_POST['login'])) {
                         $login = $_POST['login'];
-                        $senha = $_POST['senha'];
+                        $senha = md5($_POST['senha']);
 
-                        if (($login == "admin") and ($senha == "admin")) {
-                            session_start();
-                            $_SESSION['user'] = 'Arthur';
-                            header("location: restrict");
+                        include "restrict/conexao.php";
+
+                        $sql = "SELECT * from `usuarios` WHERE login = '$login' AND senha = '$senha'";
+
+                        if ($result = mysqli_query($conn, $sql)){
+                        $num_registros = mysqli_num_rows($result);
+
+                        if ($num_registros == 1) {
+                            
+                            $linha = mysqli_fetch_assoc($result);
+
+                            if (($login == $linha['login']) and ($senha == $linha['senha'])) {
+                                session_start();
+                                $_SESSION['user'] = 'Arthur';
+                                header("location: restrict");
+                            } else {
+                                echo "Login Inválido";
+                            }
+
                         } else {
                             echo "Login Inválido";
                         }
+                    } else {
+                        echo "nenhum resultado";
+                    }
                     }
                     ?>
                 </div>
