@@ -1,0 +1,9 @@
+phptester.net - testar codigo do php
+
+date('y-m-d--h-m-s') = ano-mes-dia--hora-minuto-segundo 2025-04-11--18-45-40
+
+else{
+   return 0;
+}
+
+retorna 0 caso for falso pra nao dar nada (seria tipo '')
